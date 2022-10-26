@@ -1,0 +1,70 @@
+<robot name="EXO_TAO">
+
+	<link name="bar">
+		<visual>
+			<origin xyz="0.0 0.0 0.84" rpy="0.0 1.57 0.0"/>
+			<geometry>
+				<cylinder radius="0.012" length="0.47"/>
+			</geometry>
+			<material name="Aluminium">
+				<color rgba="0.8 0.8 0.8 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="lr_leg">
+		<visual>
+			<origin xyz="0.235 0.0 0.21" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="0.012" length="0.42"/>
+			</geometry>
+			<material name="Aluminium">
+				<color rgba="0.8 0.8 0.8 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="lr_shank">
+		<visual>
+			<origin xyz="0.235 0.0 0.21" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="0.012" length="0.42"/>
+			</geometry>
+			<material name="Aluminium">
+				<color rgba="0.8 0.8 0.8 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="lr_knee">
+		<visual>
+			<origin xyz="0.262 0.0 0.42" rpy="0.0 1.57 0.0"/>
+			<geometry>
+				<cylinder radius="0.1" length="0.06"/>
+			</geometry>
+			<material name="Motor">
+				<color rgba="0.4 0.5 1.0 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<joint name="jr_knee" type="fixed">
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+		<parent link="lr_leg"/>
+		<child link="lr_knee"/>
+	</joint>
+	
+	<joint name="r_knee" type="revolute">
+		<origin xyz="0.0 0.0 0.0" rpy="3.14 0.0 0.0"/>
+		<parent link="lr_knee"/>
+		<child link="lr_shank"/>
+	</joint>
+
+	<joint name="r_bar" type="revolute">
+		<origin xyz="0.0 0.0 0.84" rpy="0.0 0.0 0.0"/>
+		<parent link="bar"/>
+		<child link="lr_leg"/>
+	</joint>
+	
+	
+</robot>
