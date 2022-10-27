@@ -10,6 +10,9 @@
 # export PYTHONPATH=/opt/openrobots/lib/python2.7/site-packages:$PYTHONPATH # Adapt your desired python version here
 # export CMAKE_PREFIX_PATH=/opt/openrobots:$CMAKE_PREFIX_PATH
 
+
+# pip install panda3d_viewer
+
 # pip install -r requeriments.txt
 
 pin==2.6.10

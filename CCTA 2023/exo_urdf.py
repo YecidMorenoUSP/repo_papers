@@ -1,7 +1,7 @@
 import pinocchio
 
  
-urdf_filename = "Exo/description.urdf"
+urdf_filename = "Exo/description_v1.urdf"
  
 model    = pinocchio.buildModelFromUrdf(urdf_filename)
 

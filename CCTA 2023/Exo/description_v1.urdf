@@ -1,0 +1,198 @@
+<robot name="EXO_TAO">
+
+	<!-- Barra -->
+
+	<link name="bar">
+		<inertial>
+			<mass value="1"/>
+			<inertia ixx="0.1" ixy="0.1" ixz="0.1" iyy="0.1" iyz="0.1" izz="0.1"/>
+		</inertial>
+		<visual>
+			<origin xyz="0.0 0.0 0.84" rpy="0.0 1.57 0.0"/>
+			<geometry>
+				<cylinder radius="0.012" length="0.47"/>
+			</geometry>
+			<material name="">
+				<color rgba="1.0 0.0 0.0 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<!-- Pierna derecha -->
+	<link name="lr_hip">
+		<visual>
+		    
+			<origin xyz="0.235 0.0 0.84" rpy="0.0 1.57 0.0"/>
+			<geometry>
+				<cylinder radius="0.04" length="0.05"/>
+			</geometry>
+			<material name="Aluminium">
+				<color rgba="0.8 0.8 0.8 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="lr_leg">
+		<inertial>
+			<mass value="1"/>
+			<inertia ixx="0.1" ixy="0.1" ixz="0.1" iyy="0.1" iyz="0.1" izz="0.1"/>
+		</inertial>
+		<visual>
+			<origin xyz="0.235 0.0 0.21" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="0.012" length="0.42"/>
+			</geometry>
+			<material name="Aluminium">
+				<color rgba="0.8 0.8 0.8 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="lr_knee">
+		<visual>
+			<origin xyz="0 0.0 0" rpy="0.0 1.57 0.0"/>
+			<geometry>
+				<cylinder radius="0.1" length="0.06"/>
+			</geometry>
+			<material name="Motor">
+				<color rgba="0.4 0.5 1.0 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="lr_shank">
+	<inertial>
+			<mass value="1"/>
+			<inertia ixx="0.1" ixy="0.1" ixz="0.1" iyy="0.1" iyz="0.1" izz="0.1"/>
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0.21" rpy="0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="0.012" length="0.42"/>
+			</geometry>
+			<material name="Aluminium">
+				<color rgba="0.8 0.8 0.8 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<!-- Pierna izquierda -->
+
+	<link name="ll_hip">
+		<visual>
+		    
+			<origin xyz="-0.235 0.0 0.84" rpy="0.0 1.57 0.0"/>
+			<geometry>
+				<cylinder radius="0.04" length="0.05"/>
+			</geometry>
+			<material name="Aluminium">
+				<color rgba="0.8 0.8 0.8 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="ll_leg">
+		<inertial>
+			<mass value="1"/>
+			<inertia ixx="0.1" ixy="0.1" ixz="0.1" iyy="0.1" iyz="0.1" izz="0.1"/>
+		</inertial>
+		<visual>
+			<origin xyz="-0.235 0.0 0.21" rpy="0.0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="0.012" length="0.42"/>
+			</geometry>
+			<material name="Aluminium">
+				<color rgba="0.8 0.8 0.8 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="ll_knee">
+		<visual>
+			<origin xyz="0 0.0 0" rpy="0.0 1.57 0.0"/>
+			<geometry>
+				<cylinder radius="0.05" length="0.1"/>
+			</geometry>
+			<material name="Motor">
+				<color rgba="0.4 0.5 1.0 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	
+
+	<link name="ll_shank">
+	<inertial>
+			<mass value="1"/>
+			<inertia ixx="0.1" ixy="0.1" ixz="0.1" iyy="0.1" iyz="0.1" izz="0.1"/>
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0.21" rpy="0 0.0 0.0"/>
+			<geometry>
+				<cylinder radius="0.012" length="0.42"/>
+			</geometry>
+			<material name="Aluminium">
+				<color rgba="0.8 0.8 0.8 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+
+	<!-- Barra -->
+	<joint name="jr_bar" type="fixed">
+		<origin xyz="0 0.0 0" rpy="0.0 0.0 0.0"/>
+		<parent link="bar"/>
+		<child link="lr_hip"/>
+	</joint>
+	<joint name="jl_bar" type="fixed">
+		<origin xyz="0 0.0 0" rpy="0.0 0.0 0.0"/>
+		<parent link="bar"/>
+		<child link="ll_hip"/>
+	</joint>
+	
+	<!-- juntas derecha -->
+	
+	<joint name="r_hip" type="revolute">
+		<origin xyz="0.0 0.0 0.84" rpy="3.14 0.0 0.0"/>
+		<parent link="lr_hip"/>
+		<child link="lr_leg"/>
+		<limit lower="-0.785" upper="0.785" effort="3.0" velocity="4.0"/>
+	</joint>		
+
+	<joint name="jr_knee" type="fixed">
+		<origin xyz="0.265 0.0 0.42" rpy="0.0 0.0 0.0"/>
+		<parent link="lr_leg"/>
+		<child link="lr_knee"/>
+	</joint>
+
+	<joint name="r_knee" type="revolute">
+		<origin xyz="-0.03 0.0 0" rpy="0 0.0 0.0"/>
+		<parent link="lr_knee"/>
+		<child link="lr_shank"/>
+		<limit lower="0.0" upper="1.57" effort="3.0" velocity="4.0"/>
+	</joint>
+
+	
+	<!-- Juntas izquierda -->
+	
+	<joint name="l_hip" type="revolute">
+		<origin xyz="0.0 0.0 0.84" rpy="3.14 0.0 0.0"/>
+		<parent link="ll_hip"/>
+		<child link="ll_leg"/>
+		<limit lower="-0.785" upper="0.785" effort="3.0" velocity="4.0"/>
+	</joint>		
+
+	<joint name="jl_knee" type="fixed">
+		<origin xyz="-0.265 0.0 0.42" rpy="0.0 0.0 0.0"/>
+		<parent link="ll_leg"/>
+		<child link="ll_knee"/>
+	</joint>
+
+	<joint name="l_knee" type="revolute">
+		<origin xyz="0.03 0.0 0" rpy="0 0.0 0.0"/>
+		<parent link="ll_knee"/>
+		<child link="ll_shank"/>
+		<limit lower="0.0" upper="1.57" effort="3.0" velocity="4.0"/>
+	</joint>
+	
+</robot>
