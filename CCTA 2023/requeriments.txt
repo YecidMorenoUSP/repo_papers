@@ -16,4 +16,6 @@
 # pip install -r requeriments.txt
 
 pin==2.6.10
+panda3d-viewer==0.4.1
+matplotlib==3.6.1
 # ipykernel==6.16.2
