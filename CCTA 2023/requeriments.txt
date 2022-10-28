@@ -10,8 +10,7 @@
 # export PYTHONPATH=/opt/openrobots/lib/python2.7/site-packages:$PYTHONPATH # Adapt your desired python version here
 # export CMAKE_PREFIX_PATH=/opt/openrobots:$CMAKE_PREFIX_PATH
 
-
-# pip install panda3d_viewer
+# sudo apt-get install texlive-latex-extra texlive-fonts-recommended dvipng cm-super
 
 # pip install -r requeriments.txt
 
