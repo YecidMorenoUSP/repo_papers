@@ -18,4 +18,6 @@
 pin==2.6.10
 panda3d-viewer==0.4.1
 matplotlib==3.6.1
+sympy==1.11.1
+PyQt5==5.15.7
 # ipykernel==6.16.2
