@@ -13,16 +13,12 @@ class Wave():
     def __init__(self,_name="null",_fnc = t_sym,x=t_sym,arg=(t_sym)):
         self.t_limits = (-inf,inf)
         self.name = _name
-        self._fnc = _fnc
-        self.fnc = _fnc(t_sym)
-        self.fnc_d = diff(self.fnc,t_sym)
-        self.fnc_dd = diff(self.fnc_d,t_sym)
+        self._fnc0 = _fnc
+        self._arg = arg
         self.x = x
-        self.set_arguments(arg)
-        
+        self.reset()      
+        self.set_arguments(self._arg)  
 
-    def subs(self):
-        None
 
     def set_arguments(self,arg):
         self.arg = arg
@@ -30,6 +26,24 @@ class Wave():
         self.lambda_y    = lambdify(full_args,self.fnc)
         self.lambda_yd  = lambdify(full_args,self.fnc_d)
         self.lambda_ydd = lambdify(full_args,self.fnc_dd)
+    
+    def reset(self):
+        self._fnc  = self._fnc0
+        self.fnc = self._fnc(t_sym)
+        self.fnc_d = diff(self.fnc,t_sym)
+        self.fnc_dd = diff(self.fnc_d,t_sym)       
+
+    def set_limits(self,arg):
+        self.t_limits = arg
+
+
+    def set_constants(self,*arg):
+        self.fnc = self.fnc.subs(arg)
+        self.fnc_d = diff(self.fnc,t_sym)
+        self.fnc_dd = diff(self.fnc_d,t_sym)  
+
+        self.set_arguments(())  
+
 
     def isActive(self,t):
         if(t>=self.t_limits[0] and t<=self.t_limits[1]):
@@ -65,7 +79,7 @@ class Wave():
 WAVES = {}
 WAVES["SIN"] = Wave("sin",lambda t_sym:A*sin(2*np.pi*t_sym*F+D),t_sym,(A,F,D))
 WAVES["SIN"].set_arguments((A,F,D))
-
+# WAVES["SIN"].set_constants((A,2),(F,1),(D,0))
 
 
 def cloneWave(wave):
